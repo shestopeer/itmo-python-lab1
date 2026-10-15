@@ -102,7 +102,7 @@ def animation():
     print()
 
 
-def diagramm():
+def diagram():
     with open('sequence.txt') as file:
         data = []
         for line in file:
@@ -146,7 +146,20 @@ def graph():
         col = start_col + int(2 * x)
         print(f'\u001b[{row};{col}H{BLUE} {RESET}', end='')
 
-    print(f'\u001b[{start_row + length_axis + 2};1H')
+    for y in range(1, length_axis + 1):
+        row = start_row + length_axis - y
+        print(f'\u001b[{row};{start_col - 3}H{y}', end='')
+    for y in range(1, length_axis * 2):
+        x = y / 2
+        col = start_col + int(2 * x)
+        if y % 2 == 0:
+            print(f'\u001b[{start_row + length_axis + 1};{col}H{int(x)}', end='')
+
+    print(f'\u001b[{start_row + length_axis + 1};{start_col - 2}H0', end='')
+    print(f'\u001b[{start_row - 1};{start_col}Hy', end='')
+    print(f'\u001b[{start_row + length_axis};{start_col + length_axis * 2 + 1}Hx', end='')
+    print(f'\u001b[{start_row - 1};{start_col + 8}Hy = 2x', end='')
+    print(f'\u001b[{start_row + length_axis + 3};1H')
 
 
 flag()
@@ -154,6 +167,6 @@ print()
 pattern()
 input('Нажмите Enter для продолжения...')
 animation()
-diagramm()
+diagram()
 input('Нажмите Enter для продолжения...')
 graph()
