@@ -149,6 +149,7 @@ def graph():
     for y in range(1, length_axis + 1):
         row = start_row + length_axis - y
         print(f'\u001b[{row};{start_col - 3}H{y}', end='')
+        
     for y in range(1, length_axis * 2):
         x = y / 2
         col = start_col + int(2 * x)
